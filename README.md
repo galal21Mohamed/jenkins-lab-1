@@ -27,5 +27,28 @@ The code is in a public GitHub repository. You will configure Jenkins to:
 
 --- 
 
-#                                          **Task Answer**
-1. clone this repo $ git clone 
+#                                          **Instructions**
+1. clone this repo $ git clone https://github.com/ahmedsamyabdullah/digi-jenkins-lab.git
+2. $ docker exec -u root -it jenkins bash
+3. $ apt update
+4. $ apt install -y php-cli php-mbstring php-xml php-curl unzip
+5. $ wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-9.phar
+6. $ chmod +x /usr/local/bin/phpunit
+7. Create GitHub Personal Access Token (PAT)
+    - settings -> developer settings -> personal access token -> classic
+    - Scopes ( repo  & admin:repo_hook )
+    - **Important**: Copy and Save your PAT in external file
+8. Store GitHub Personal Access Token in Jenkins credentials (ID: github-token) with scope “Global”.
+   - Add Credentials -> secret text 
+   - secret (your tokne PAT)
+9. Configure GitHub webhook 
+   - install github integration plugin on jenkins
+   - from your repo -> settings -> webhook -> Add webhook
+   - **Note**: for Payload URL use ngrok
+10. Ngrok -> login with github accound -> download on windows (host) and get auth
+11. open powershell on windows 
+    - $ ngrok http http://192.168.x.x:8080    # ip of your ubuntu vm
+    - must payload URL on github end by /github-webhook/
+    - check Recent Deliveries tab in github webhook is success ping
+12. Write the Jenkinsfile
+    - 
