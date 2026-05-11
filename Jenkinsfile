@@ -1,6 +1,10 @@
 pipeline {
     agent { label 'built-in' }
 
+    environment {
+        GITHUB_TOKEN = credentials('github-token')
+    }
+
     stages {
         stage('Checkout') {
             steps {
